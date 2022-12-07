@@ -17,6 +17,20 @@ function [A] = influenceA(a,x,type,BC)
 % OUTPUTS:
 %
 % A - n_points x n_loads - Influence matrix
+%
+% EXAMPLES:
+%
+% A UDL with 4 evenly-spaced control points along a cantilevered, 4m beam.
+% Sensors placed at 2.5m and 3.5m
+%   [A] = influenceA([1,2,3,4],[2.5,3.5],'udl','cantilevered')
+%
+% A LDL with 8 evenly-spaced control points along a clamped-clamped, 1m beam.
+% Sensors placed at 0.1m, 0.2m, 0.3m, 0.45m, 0.6m, 0.75m, 0.9m, and 0.95m
+%   numSens=8;
+%   L = 1;
+%   a = [0:numSens-1]*L/(numSens-1);
+%   sensLocs = [0.1, 0.2, 0.3, 0.45, 0.6, 0.75, 0.9, 0.95];
+%   [A] = influenceA(a,sensLocs,'ldl','clamped')
 
 n_loads = length(a);
 n_points = length(x);
